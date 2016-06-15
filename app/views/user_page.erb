@@ -1,0 +1,37 @@
+<h1>Add A New Artwork</h1>
+<form method = 'post' action = '/comments'>
+  <div>
+    <label>Image URL</label>
+    <input type="text" name="url">
+  </div>
+  <div>
+    <label>Artist Name</label>
+    <input type="text" name="artist_name">
+  </div>
+  <div>
+    <label>Comments</label>
+    <input type="text" name="text">
+  </div>
+  <div>
+    <label>Additional Links</label>
+    <input type="text" name="link">
+  </div>
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+</form>
+
+<button><a href="/">Return home</a></button>
+
+<br/>
+
+<h2>My Posted Artwork</h2>
+<% @comments.each do |post| %>
+  <div class="posts">
+      <p><%=post.id%></p>
+      <p><%=post.artist_name%></p>
+      <img src= "<%=post.url%>"/>
+      <a href="<%=post.link%>"></a>
+      <p><%=post.text%></p>
+  </div>
+<% end %>
