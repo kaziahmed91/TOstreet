@@ -1,1 +1,28 @@
-<h1>Home Page</h1>
+<h1>Toronto Street Art</h1>
+
+<% @comments.each do |comment| %>
+  <div class="comment">
+    <h3><a href="/comments/<%=comment.id %>"><small>(submitted by: <%= comment.user.email %>) </small></h3>
+    <p>
+      <img src="<%= comment.url %>">
+    </p>
+    <p>
+      Found at: <%= comment.location %>
+    </p>
+    <p>
+      <%= comment.text %>
+    </p>
+    <h3>
+      <%= comment.artist %>
+    </h3>
+    <p>
+      <%= comment.link %>
+    </p>
+    <br>
+    <p>
+      <a href="/comments/new"> Post a new capture! </a>
+    </p>
+    <br>
+    <br>
+  </div>
+<% end %>

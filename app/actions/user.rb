@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  get '/secure' do
+  get '/login' do
     if current_user
       erb :user_page
     else
