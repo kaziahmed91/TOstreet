@@ -1,8 +1,9 @@
 # A sample Gemfile
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 gem 'rake'
 gem 'activesupport'
+gem 'bcrypt'
 
 gem 'sinatra'
 gem 'sinatra-contrib'
@@ -20,6 +21,6 @@ end
 
 # bundle install --without test --without development
 group :production do
-  # use postgres in production, or move outside a group if your app uses postgres for development and production 
+  # use postgres in production, or move outside a group if your app uses postgres for development and production
   gem 'pg'
 end
