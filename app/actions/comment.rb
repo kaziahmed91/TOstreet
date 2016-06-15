@@ -12,9 +12,6 @@ post '/comments' do
 end
 
 get '/user_page' do
-  erb :user_page
-end
-
-get '/user_page' do
+  @comment = Comment.all
   erb :user_page
 end
