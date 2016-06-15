@@ -19,7 +19,7 @@ configure do
   enable :sessions
   set :session_secret, ENV['SESSION_KEY'] || 'lighthouselabssecret'
 
-  set :views, File.join(Sinatra::Application.root, "app", "views")
+  set :views, File.join(Sinatra::Application.root, 'app', 'views')
 end
 
 # Development and Test Sinatra Configuration
@@ -36,4 +36,11 @@ end
 require APP_ROOT.join('config', 'database')
 
 # Load the routes / actions
-require APP_ROOT.join('app', 'actions')
+require APP_ROOT.join('app', 'actions', 'users')
+require APP_ROOT.join('app', 'actions', 'artwork')
+require APP_ROOT.join('app', 'actions', 'comments')
+require APP_ROOT.join('app', 'actions', 'intersections')
+
+Dir[APP_ROOT.join('app', 'models', '*.rb')].each do |model_file|
+  require model_file
+end
