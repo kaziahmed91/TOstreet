@@ -1,28 +1,43 @@
 <h1>Toronto Street Art</h1>
 
-<% @comments.each do |comment| %>
-  <div class="comment">
-    <h3><a href="/comments/<%=comment.id %>"><small>(submitted by: <%= comment.user.email %>) </small></h3>
-    <p>
-      <img src="<%= comment.url %>">
-    </p>
-    <p>
-      Found at: <%= comment.location %>
-    </p>
-    <p>
-      <%= comment.text %>
-    </p>
-    <h3>
-      <%= comment.artist %>
-    </h3>
-    <p>
-      <%= comment.link %>
-    </p>
-    <br>
-    <p>
-      <a href="/comments/new"> Post a new capture! </a>
-    </p>
-    <br>
+<% if current_user %>
+  <form method = 'get' action = '/logout'>
+  <input type="submit" value = "logout">
+  </form>
+<% else %>
+  <%= partial(:login_form) %>
+<% end %>
+<br />
+
+
+<form method = 'post' action = '/search'>
+  <div>
+    <label>Search street 1</label>
+    <input type="text" name="street1">
+  </div>
+  <div>
+    <label>Search street 2</label>
+    <input type="text" name="street2">
+  </div>
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+</form>
+
+
+<% @posts.each do |post| %>
+  <div class="post">
+    <h3><small>(submitted by: <%= post.user.email %>)</small></h3>
+      <p>
+        Posted on: <%=post.created_at%>
+      </p>
+    <a href="/post/<%=post.id %>"><img src="<%= post.url %>"></a>
+    <p>Found at: <%= post.artwork.street1%> and <%= post.artwork.street2%></p>
+    <p><%= post.text %></p>
+    <h3><%= post.artist_name%></h3>
+    <a href = "<%= post.link %>"%></a>
+
     <br>
   </div>
 <% end %>
+<p><a href="/post/new">New Post</a></p>

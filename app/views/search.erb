@@ -1,0 +1,15 @@
+
+<h1>Your search results for "<%=@street1%>" and "<%=@street2%>" are as follows: </h1>
+
+<% if @intersections.present? %>
+  <% @intersections.each do |intersection| %>
+      <% intersection.posts.each do |post| %>
+        <img src="<%= post.url %>"/>
+        <p>
+          <%=post.text%>
+        </p>
+      <% end %>
+    <% end %>
+<% else %>
+  <h1>Sorry results not found!</h1>
+<% end %>

@@ -1,8 +1,18 @@
 <h1>Add A New Artwork</h1>
-<form method = 'post' action = '/comments'>
+
+<form method = 'post' action = '/upload'>
+  <input type="hidden" name="user_id" value= " <%=current_user.id%>" >
   <div>
     <label>Image URL</label>
     <input type="text" name="url">
+  </div>
+  <div>
+    <label>Street 1</label>
+    <input type="text" name="street1">
+  </div>
+  <div>
+    <label>Street 2</label>
+    <input type="text" name="street2">
   </div>
   <div>
     <label>Artist Name</label>
@@ -26,12 +36,28 @@
 <br/>
 
 <h2>My Posted Artwork</h2>
-<% @comments.each do |post| %>
-  <div class="posts">
-      <p><%=post.id%></p>
-      <p><%=post.artist_name%></p>
-      <img src= "<%=post.url%>"/>
-      <a href="<%=post.link%>"></a>
-      <p><%=post.text%></p>
+<% current_user.posts.each do |post| %>
+  <%=post.id%>
+  <div class="post">
+    <h4><small>(submitted by: <%= post.user.email %>) </small></h4>
+      <a href="/post/<%=post.id %>"><img src="<%= post.url %>"></a>
+    <p>
+      Found at: <%= post.artwork.street1%> and <%= post.artwork.street2%>
+    </p>
+    <p><%= post.text %></p>
+    <h3><%= post.artist_name%></h3>
+    <p>
+      Posted on: <%=post.created_at%>
+    </p>
+    <br>
+    <a href = "<%= post.link %>"%></a>
+
+  <form method="post" action="/posts/<%= post.id %>/delete">
+    <div>
+      <input type="submit" value="Delete">
+    </div>
+  </form>
+
   </div>
+
 <% end %>
